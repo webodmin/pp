@@ -1,0 +1,9 @@
+.idea/devops-epom.iml
+.idea/workspace.xml
+.idea/**
+.idea/*
+**/*.retry
+/.idea/
+.terraform
+*.tfstate
+*.tfstate.backup
