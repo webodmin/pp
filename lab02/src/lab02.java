@@ -1,8 +1,8 @@
-//import Arrays.*;
+import java.util.Arrays;
 
 class Main {
 
-    int arraySize = 10000000;
+    int arraySize = 1000000;
     public long[] array = new long[arraySize];
     int finishedOnCurrentPassThreadCounter = 0;
 
@@ -11,9 +11,8 @@ class Main {
         for (int s = 10; s <= 10000000; s *= 10) {
             long startMoment = System.nanoTime();
             m.starter(s);
-            //Thread.sleep(1000); // Sleeping for one second to check timers
             long endMoment = System.nanoTime();
-            System.out.printf("Час виконання програми для розміру масиву %d (мс): %d\n", s, (endMoment - startMoment) / 1000 / 1000);
+            System.out.printf("Час виконання програми для розміру масиву %d (мс): %d\n\n", s, (endMoment - startMoment) / 1000 / 1000);
         }
     }
 
@@ -83,7 +82,7 @@ class Main {
             passCounter++;
         } while (currentSize > 1);
 
-        //System.out.println("\nСума в багатопоточному режимі: " + array[0]);
+        System.out.println("Сума в багатопоточному режимі: " + array[0]);
     }
 
     synchronized public void increaseFinishedThreadCounter() {
