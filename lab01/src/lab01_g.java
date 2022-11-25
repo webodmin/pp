@@ -1,15 +1,22 @@
 class Main {
-    private final int numberOfThreads = 3;
+    static int arraySize = 100000000;
+    private int numberOfThreads = 1;
     private long combinedSum = 0;
     private int threadCounter = 0;
 
     public static void main(String[] args) throws InterruptedException {
         Main m = new Main();
-        m.starter();
+        long startMoment, endMoment;
+        for (int t = 2; t <= 32; t++) {
+            startMoment = System.nanoTime();
+            m.starter(t);
+            endMoment = System.nanoTime();
+            System.out.printf("Час виконання програми для розміру масиву %d та числа тредів %d (мс): %d\n", arraySize, t, (endMoment - startMoment) / 1000 / 1000);
+        }
     }
 
-    public void starter(){
-        int arraySize = 200;
+    public void starter(int t){
+        numberOfThreads = t;
         int[] array = new int[arraySize];
         int[] startIndexes = new int[numberOfThreads];
         int[] endIndexes = new int[numberOfThreads];
@@ -22,17 +29,17 @@ class Main {
         ps.run();
         for (int i = 0; i < arraySize; i++)
             simpleSum = simpleSum + array[i];
-        System.out.println("Сума в однопоточному режимі: " + simpleSum);
-        System.out.println("Сума в однопоточному режимі: " + ps.partialSum);
+        //System.out.println("Сума в однопоточному режимі: " + simpleSum);
+        //System.out.println("Сума в однопоточному режимі: " + ps.partialSum);
 
         for (int i = 0; i < numberOfThreads; i++) {
             startIndexes[i] = arraySize / numberOfThreads * i;
-            System.out.printf("startIndexes[%d]: %d\n", i, startIndexes[i]);
+            //System.out.printf("startIndexes[%d]: %d\n", i, startIndexes[i]);
         }
 
         for (int i = 0; i < numberOfThreads - 1; i++) {
             endIndexes[i] = startIndexes[i + 1] - 1;
-            System.out.printf("endIndexes[%d]: %d\n", i, endIndexes[i]);
+            //System.out.printf("endIndexes[%d]: %d\n", i, endIndexes[i]);
         }
         endIndexes[numberOfThreads - 1] = arraySize - 1;
 
@@ -57,7 +64,7 @@ class Main {
             }
         }
 
-        System.out.println("Сума в багатопоточному режимі: " + combinedSum);
+        //System.out.println("Сума в багатопоточному режимі: " + combinedSum);
     }
 
     synchronized public void setPartialSum(long partSum){
