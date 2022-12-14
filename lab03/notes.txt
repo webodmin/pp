@@ -1,0 +1,8 @@
+# AtomicBoolean
+https://www.geeksforgeeks.org/java-program-to-implement-cas-compare-and-swap-algorithm/
+
+thread.interrupt()
+sleep()
+
+# Справочник по синхронизаторам java.util.concurrent.*
+https://habr.com/ru/post/277669/

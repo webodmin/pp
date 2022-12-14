@@ -1,4 +1,3 @@
-.idea/devops-epom.iml
 .idea/workspace.xml
 .idea/**
 .idea/*
@@ -7,3 +6,4 @@
 .terraform
 *.tfstate
 *.tfstate.backup
+phaser-demo
