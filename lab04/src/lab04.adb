@@ -5,7 +5,7 @@ use Ada.Text_IO;
 -- On my notebook with default settings the maximum number is about 34631
 
 procedure lab04 is
-	arraySize: constant Integer := 32000;
+  arraySize: constant Integer := 32000;
   maxTasksLab01: Integer := 16; -- number of threads for method 1
   type IntArray is array (1..arraySize) of Long_Long_Integer;
   arr: IntArray;
@@ -27,7 +27,7 @@ procedure lab04 is
     a1: Integer := 0;
     d: Integer := 1;
   begin
-		return Long_Long_Integer((2 * a1 + d * (n - 1)) * n / 2);
+    return Long_Long_Integer((2 * a1 + d * (n - 1)) * n / 2);
   end sum_of_arithmetic_progression;
 
   procedure create_array is
@@ -85,18 +85,18 @@ procedure lab04 is
   partialResult: Long_Long_Integer;
   taskCounter: Integer := 0;
   currentSize: Integer := arraySize;
-	startIndexes, endIndexes: array(1..maxTasksLab01) of Integer;
+  startIndexes, endIndexes: array(1..maxTasksLab01) of Integer;
   passCounter: Integer := 1;
 begin
-	create_array;
- --show_array;
+  create_array;
+  --show_array;
   for t in 1..maxTasksLab01 loop
-	  startIndexes(t) := arraySize / maxTasksLab01 * (t - 1) + 1;
-	end loop;
+    startIndexes(t) := arraySize / maxTasksLab01 * (t - 1) + 1;
+  end loop;
   for t in 1..maxTasksLab01-1 loop
-	  endIndexes(t) := startIndexes(t + 1) - 1;
-	end loop;
-	endIndexes(maxTasksLab01)	:= arraySize;
+    endIndexes(t) := startIndexes(t + 1) - 1;
+  end loop;
+  endIndexes(maxTasksLab01) := arraySize;
 
   for t in tasksLab01'Range loop
     --Put_Line("Passing data to task number " & t'img & " of total " & maxTasksLab01'img & "...");
@@ -110,10 +110,10 @@ begin
   while currentSize > 1 loop
     Put_Line("taskCounter at the beginning of a pass N" & passCounter'img & " = " & taskCounter'img & ". currentSize = " & currentSize'img);
     for index in 1..currentSize/2 loop
-			taskCounter := taskCounter + 1;
+      taskCounter := taskCounter + 1;
       taskslab02(taskCounter).start(index,currentSize);
     end loop;
-		currentSize := currentSize / 2 + currentSize mod 2;
+    currentSize := currentSize / 2 + currentSize mod 2;
     passCounter := passCounter + 1;
   end loop;
   Put_Line("FINAL RESULT after all tasks completed (lab02 method): " & arr(1)'img);
